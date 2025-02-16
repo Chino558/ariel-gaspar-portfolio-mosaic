@@ -28,4 +28,35 @@
   .hover-project-card {
     @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
   }
+
+  .wave-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wave-reveal {
+    clip-path: path('M 0 100 V 50 Q 50 0 100 50 V 100 Z');
+    transition: clip-path 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .wave-reveal.visible {
+    clip-path: path('M 0 100 V 0 Q 50 0 100 0 V 100 Z');
+  }
+
+  @keyframes wave {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .wave-effect {
+    @apply absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20;
+    animation: wave 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
 }

@@ -1,6 +1,6 @@
 
 import { Github, Mail, Linkedin } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const projects = [
   {
@@ -31,6 +31,28 @@ const projects = [
 
 const Index = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isProjectsVisible, setIsProjectsVisible] = useState(false);
+  const projectsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsProjectsVisible(true);
+          observer.disconnect();
+        }
+      },
+      {
+        threshold: 0.3,
+      }
+    );
+
+    if (projectsRef.current) {
+      observer.observe(projectsRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -71,42 +93,45 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Featured Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <a
-                key={index}
-                href={project.link}
-                className="block"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <div className="glass-card hover-project-card rounded-lg overflow-hidden">
-                  <div className="relative aspect-video">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                    />
-                    {hoveredIndex === index && (
-                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center animate-fade-in">
-                        <span className="text-white text-lg font-medium">
-                          View Project
-                        </span>
-                      </div>
-                    )}
+      <section ref={projectsRef} className="section-padding bg-gray-50 wave-section">
+        <div className={`wave-reveal ${isProjectsVisible ? 'visible' : ''}`}>
+          {isProjectsVisible && <div className="wave-effect" />}
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+              Featured Projects
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {projects.map((project, index) => (
+                <a
+                  key={index}
+                  href={project.link}
+                  className="block"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <div className="glass-card hover-project-card rounded-lg overflow-hidden">
+                    <div className="relative aspect-video">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                      {hoveredIndex === index && (
+                        <div className="absolute inset-0 bg-black/60 flex items-center justify-center animate-fade-in">
+                          <span className="text-white text-lg font-medium">
+                            View Project
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                      <p className="text-gray-600">{project.description}</p>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                    <p className="text-gray-600">{project.description}</p>
-                  </div>
-                </div>
-              </a>
-            ))}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
