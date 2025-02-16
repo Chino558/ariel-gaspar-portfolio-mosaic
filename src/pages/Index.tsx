@@ -57,47 +57,47 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="section-padding min-h-screen flex flex-col justify-center items-center text-center">
+      <section className="section-padding min-h-screen flex flex-col justify-center items-center text-center bg-gradient-to-b from-[#F2FCE2] to-[#FFDEE2]">
         <div className="animate-fade-up space-y-6 max-w-3xl">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-[#8B5CF6] to-[#D946EF] text-transparent bg-clip-text">
             Ariel Gaspar
           </h1>
           <p className="text-xl md:text-2xl text-gray-600">
             Full Stack Developer & Designer
           </p>
-          <div className="flex gap-4 justify-center pt-4">
+          <div className="flex gap-6 justify-center pt-4">
             <a
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+              className="social-icon"
             >
-              <Github className="w-6 h-6" />
+              <Github />
             </a>
             <a
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+              className="social-icon"
             >
-              <Linkedin className="w-6 h-6" />
+              <Linkedin />
             </a>
             <a
               href="mailto:contact@example.com"
-              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+              className="social-icon"
             >
-              <Mail className="w-6 h-6" />
+              <Mail />
             </a>
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section ref={projectsRef} className="section-padding bg-gray-50 wave-section">
+      <section ref={projectsRef} className="section-padding wave-section">
         <div className={`wave-reveal ${isProjectsVisible ? 'visible' : ''}`}>
           {isProjectsVisible && <div className="wave-effect" />}
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 bg-gradient-to-r from-[#8B5CF6] to-[#D946EF] text-transparent bg-clip-text">
               Featured Projects
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -137,9 +137,11 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section className="section-padding">
+      <section className="section-padding bg-gradient-to-b from-[#FFDEE2] to-[#F2FCE2]">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">About Me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-[#8B5CF6] to-[#D946EF] text-transparent bg-clip-text">
+            About Me
+          </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
             I'm a passionate developer focused on creating beautiful and functional web applications. 
             With expertise in modern technologies and design principles, I bring ideas to life through clean code and intuitive user experiences.
@@ -148,15 +150,17 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-gradient-to-b from-[#F2FCE2] to-[#FFDEE2]">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Get in Touch</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 bg-gradient-to-r from-[#8B5CF6] to-[#D946EF] text-transparent bg-clip-text">
+            Get in Touch
+          </h2>
           <p className="text-lg text-gray-600 mb-8">
             Have a project in mind? Let's work together to create something amazing.
           </p>
           <a
             href="mailto:contact@example.com"
-            className="inline-block px-8 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            className="inline-block px-8 py-3 bg-gradient-to-r from-[#8B5CF6] to-[#D946EF] text-white rounded-lg hover:opacity-90 transition-opacity"
           >
             Contact Me
           </a>
