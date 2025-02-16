@@ -28,43 +28,4 @@
   .hover-project-card {
     @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
   }
-
-  .paint-splash {
-    @apply absolute inset-0 pointer-events-none;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-    mask: radial-gradient(circle at center, black 30%, transparent 70%);
-    animation: splash 2s ease-out forwards;
-  }
-
-  .paint-drip {
-    @apply absolute left-0 right-0 pointer-events-none;
-    height: 100vh;
-    background: linear-gradient(180deg, transparent, white);
-    animation: drip 3s ease-in-out forwards;
-    animation-delay: 1.5s;
-  }
-}
-
-@keyframes splash {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1);
-  }
-}
-
-@keyframes drip {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
 }
