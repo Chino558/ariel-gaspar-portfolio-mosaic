@@ -1,6 +1,6 @@
 
 import { Github, Mail, Linkedin } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const projects = [
   {
@@ -31,11 +31,27 @@ const projects = [
 
 const Index = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 5000); // Remove splash elements after animations complete
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative overflow-hidden">
+      {showSplash && (
+        <>
+          <div className="paint-splash" />
+          <div className="paint-drip" />
+        </>
+      )}
+      
       {/* Hero Section */}
-      <section className="section-padding min-h-screen flex flex-col justify-center items-center text-center">
+      <section className="section-padding min-h-screen flex flex-col justify-center items-center text-center relative">
         <div className="animate-fade-up space-y-6 max-w-3xl">
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
             Ariel Gaspar
